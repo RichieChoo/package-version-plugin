@@ -1,0 +1,21 @@
+{
+  "name": "version-list-webpack-plugin",
+  "version": "0.1.1",
+  "description": "webpack plugin for installed packages versions show",
+  "main": "index.js",
+  "scripts": {
+    "update": "bs patch && npm publish",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "webpack",
+    "plugin",
+    "dependences",
+    "versions"
+  ],
+  "author": "RichieChoo",
+  "license": "MIT",
+  "dependencies": {
+    "bs-cli": "^0.1.24"
+  }
+}
