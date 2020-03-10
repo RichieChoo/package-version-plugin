@@ -1,6 +1,6 @@
 {
   "name": "packages-version-webpack-plugin",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "show project dependencies exact versions on production environment.",
   "main": "index.js",
   "scripts": {

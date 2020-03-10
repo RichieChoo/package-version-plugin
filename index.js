@@ -45,16 +45,13 @@ class PackagesVersionWebpackPlugin {
 
 		return JSON.stringify(result, null, 2);
 	}
-	getSize(data) {
-		return new Blob([data]).size;
-	}
 	apply(compiler) {
 		const { hooks, context } = compiler;
 		hooks.emit.tap(pluginName, compilation => {
 			const source = this.getData(context);
 			compilation.assets["version.json"] = {
 				source,
-				size: this.getSize(source)
+				size: Buffer.byteLength(source,"utf8")
 			};
 		});
 	}
