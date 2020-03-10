@@ -38,3 +38,5 @@ chainWebpack:config=>{
 }
 ...
 ```
+## Feature
+Plugin will collect dependencies version list and output `version.json` in the webpack bundle path
