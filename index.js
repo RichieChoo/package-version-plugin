@@ -3,16 +3,24 @@ const path = require("path");
 const pluginName = "VersionListWebpackPlugin";
 class VersionListWebpackPlugin {
 	constructor(options) {
-		this.options = options;
+		const defaultOptions = {
+			showDevDependencies: false,
+			showDependencies: true
+		};
+		this.options = Object.assign(defaultOptions, options);
 	}
 	getData(context) {
 		const packagePath = path.join(context, "package.json");
 		const { dependencies = {}, devDependencies = {} } = JSON.parse(
 			fs.readFileSync(packagePath)
 		);
-		let list = Object.keys(dependencies);
+		let list = [];
 		let result = {};
-		if (this.options.showDevDependencies) {
+		const { showDevDependencies, showDependencies } = this.options;
+		if (showDependencies) {
+			list.push(...Object.keys(dependencies));
+		}
+		if (showDevDependencies) {
 			list.push(...Object.keys(devDependencies));
 		}
 		list.forEach(v => {
