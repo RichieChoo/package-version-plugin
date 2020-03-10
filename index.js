@@ -14,28 +14,46 @@ class VersionListWebpackPlugin {
 		const { dependencies = {}, devDependencies = {} } = JSON.parse(
 			fs.readFileSync(packagePath)
 		);
-		let list = [];
 		let result = {};
 		const { showDevDependencies, showDependencies } = this.options;
 		if (showDependencies) {
-			list.push(...Object.keys(dependencies));
+			result.dependencies = dependencies;
+			Object.keys(dependencies).forEach(v => {
+				const versionPath = path.join(
+					context,
+					"node_modules",
+					v,
+					"package.json"
+				);
+				const { version } = JSON.parse(fs.readFileSync(versionPath));
+				result.dependencies[v] = version;
+			});
 		}
 		if (showDevDependencies) {
-			list.push(...Object.keys(devDependencies));
+			result.devDependencies = devDependencies;
+			Object.keys(devDependencies).forEach(v => {
+				const versionPath = path.join(
+					context,
+					"node_modules",
+					v,
+					"package.json"
+				);
+				const { version } = JSON.parse(fs.readFileSync(versionPath));
+				result.devDependencies[v] = version;
+			});
 		}
-		list.forEach(v => {
-			const versionPath = path.join(context, "node_modules", v, "package.json");
-			const { version } = JSON.parse(fs.readFileSync(versionPath));
-			result[v] = version;
-		});
+
 		return JSON.stringify(result, null, 2);
+	}
+	getSize(data) {
+		return new Blob([data]).size;
 	}
 	apply(compiler) {
 		const { hooks, context } = compiler;
 		hooks.emit.tap(pluginName, compilation => {
-			const data = this.getData(context);
 			compilation.assets["version.json"] = {
-				source: () => data
+				source: this.getData(context),
+				size: this.getSize(data)
 			};
 		});
 	}

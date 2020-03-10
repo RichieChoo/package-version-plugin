@@ -10,6 +10,8 @@ npm install --save-dev version-list-webpack-plugin
 
 ## Usage
 
+##### webpackConfig
+
 ```
 var VersionListWebpackPlugin = require('version-list-webpack-plugin');
 
@@ -21,4 +23,18 @@ var webpackConfig = {
         })
     ]
 }
+```
+
+##### chainWebpack
+
+```
+const VersionListWebpackPlugin = require('version-list-webpack-plugin');
+
+...
+chainWebpack:config=>{
+    	config.plugin("VersionListWebpackPlugin").use(VersionListWebpackPlugin, [
+			{ showDevDependencies: true, showDependencies: true }
+		]);
+}
+...
 ```
