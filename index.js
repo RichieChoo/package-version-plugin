@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
-const pluginName = "PackagesVersionWebpackPlugin";
-class PackagesVersionWebpackPlugin {
+const pluginName = "PackageVersionPlugin";
+class PackageVersionPlugin {
 	constructor(options) {
 		const defaultOptions = {
 			showDevDependencies: false,
@@ -57,4 +57,4 @@ class PackagesVersionWebpackPlugin {
 	}
 }
 
-module.exports = PackagesVersionWebpackPlugin;
+module.exports = PackageVersionPlugin;

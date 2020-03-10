@@ -1,17 +1,16 @@
 {
-  "name": "packages-version-webpack-plugin",
-  "version": "1.0.1",
+  "name": "package-version-plugin",
+  "version": "1.0.0",
   "description": "show project dependencies exact versions on production environment.",
   "main": "index.js",
   "scripts": {
-    "update": "nrm use npm && bs patch && npm publish",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/RichieChoo/packages-version-webpack-plugin"
+    "url": "https://github.com/RichieChoo/package-version-plugin"
   },
-  "homepage": "https://github.com/RichieChoo/packages-version-webpack-plugin",
+  "homepage": "https://github.com/RichieChoo/package-version-plugin",
   "keywords": [
     "webpack",
     "plugin",
