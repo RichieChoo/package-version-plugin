@@ -51,9 +51,10 @@ class VersionListWebpackPlugin {
 	apply(compiler) {
 		const { hooks, context } = compiler;
 		hooks.emit.tap(pluginName, compilation => {
+			const source = this.getData(context);
 			compilation.assets["version.json"] = {
-				source: this.getData(context),
-				size: this.getSize(data)
+				source,
+				size: this.getSize(source)
 			};
 		});
 	}
