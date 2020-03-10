@@ -1,5 +1,5 @@
 {
-  "name": "version-list-webpack-plugin",
+  "name": "packages-version-webpack-plugin",
   "version": "1.0.0",
   "description": "show project dependencies exact versions on production environment.",
   "main": "index.js",
@@ -9,9 +9,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/RichieChoo/version-list-webpack-plugin"
+    "url": "https://github.com/RichieChoo/packages-version-webpack-plugin"
   },
-  "homepage": "https://github.com/RichieChoo/version-list-webpack-plugin",
+  "homepage": "https://github.com/RichieChoo/packages-version-webpack-plugin",
   "keywords": [
     "webpack",
     "plugin",

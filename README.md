@@ -1,11 +1,11 @@
-## version-list-webpack-plugin
+## packages-version-webpack-plugin
 
 Sometimes you want to know project dependencies exact versions on production environment.
 
 ## Install
 
 ```
-npm install --save-dev version-list-webpack-plugin
+npm install --save-dev packages-version-webpack-plugin
 ```
 
 ## Usage
@@ -13,11 +13,11 @@ npm install --save-dev version-list-webpack-plugin
 ##### webpackConfig
 
 ```
-var VersionListWebpackPlugin = require('version-list-webpack-plugin');
+var PackagesVersionWebpackPlugin = require('packages-version-webpack-plugin');
 
 var webpackConfig = {
     plugins: [
-        new VersionListWebpackPlugin({
+        new PackagesVersionWebpackPlugin({
             showDevDependencies: false,
             showDependencies: true,
         })
@@ -28,11 +28,11 @@ var webpackConfig = {
 ##### chainWebpack
 
 ```
-const VersionListWebpackPlugin = require('version-list-webpack-plugin');
+const PackagesVersionWebpackPlugin = require('packages-version-webpack-plugin');
 
 ...
 chainWebpack:config=>{
-    	config.plugin("VersionListWebpackPlugin").use(VersionListWebpackPlugin, [
+    	config.plugin("PackagesVersionWebpackPlugin").use(PackagesVersionWebpackPlugin, [
 			{ showDevDependencies: true, showDependencies: true }
 		]);
 }
