@@ -48,10 +48,10 @@ class PackageVersionPlugin {
 	apply(compiler) {
 		const { hooks, context } = compiler;
 		hooks.emit.tap(pluginName, compilation => {
-			const source = this.getData(context);
+			const data = this.getData(context);
 			compilation.assets["version.json"] = {
-				source,
-				size: Buffer.byteLength(source,"utf8")
+				source: () => data,
+				size: () => Buffer.byteLength(data, "utf8")
 			};
 		});
 	}
