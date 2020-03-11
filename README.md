@@ -18,8 +18,13 @@ var PackageVersionPlugin = require('package-version-plugin');
 var webpackConfig = {
     plugins: [
         new PackageVersionPlugin({
-            showDevDependencies: false,
-            showDependencies: true,
+            registry: "http://10.100.1.25:4873/",
+            outputFile: "test-version.html",
+            name: "test",
+            showDevDependencies:true,
+            showDependencies:true,
+            depFilterRegExp:/^test/,
+            devDepFilterRegExp:/^\test/
         })
     ]
 }
@@ -33,7 +38,15 @@ const PackageVersionPlugin = require('package-version-plugin');
 ...
 chainWebpack:config=>{
     	config.plugin("PackageVersionPlugin").use(PackageVersionPlugin, [
-			{ showDevDependencies: true, showDependencies: true }
+			{
+                registry: "http://10.100.1.25:4873/",
+                outputFile: "test-version.html",
+                name: "test",
+                showDevDependencies:true,
+                showDependencies:true,
+                depFilterRegExp:/^test/,
+                devDepFilterRegExp:/^\test/
+            }
 		]);
 }
 ...
