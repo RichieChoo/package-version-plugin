@@ -6,6 +6,7 @@ const internalIp = require("internal-ip");
 const fecha = require("fecha");
 const result = {
 	name: "test",
+	pkgVersion: "1.0.0",
 	ip: internalIp.v4.sync(),
 	buildTime: fecha.format(new Date(), "YYYY-MM-DD hh:mm:ss")
 };

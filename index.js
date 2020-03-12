@@ -13,6 +13,8 @@ class PackageVersionPlugin {
 			showDevDependencies: false,
 			showDependencies: true,
 			name: pkg.name,
+			icon: "favicon.ico",
+			pkgVersion: pkg.version,
 			ip: internalIp.v4.sync(),
 			buildTime: fecha.format(new Date(), "YYYY-MM-DD HH:mm:ss"),
 			outputFile: "version.html",
