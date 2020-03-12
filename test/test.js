@@ -3,7 +3,6 @@ const path = require("path");
 const getHtml = require("../lib/getHtml");
 const data = require("./version.json");
 const internalIp = require("internal-ip");
-const relativeDate = require("tiny-relative-date");
 const fecha = require("fecha");
 const result = {
 	name: "test",
