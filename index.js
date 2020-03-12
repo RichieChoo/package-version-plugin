@@ -6,13 +6,15 @@ const getHtml = require("./lib/getHtml");
 const pkg = require("./package.json");
 const isRegExp = require("lodash.isregexp");
 const fecha = require("fecha");
+const internalIp = require("internal-ip");
 class PackageVersionPlugin {
 	constructor(options) {
 		const defaultOptions = {
 			showDevDependencies: false,
 			showDependencies: true,
 			name: pkg.name,
-			buildTime: fecha.format(new Date(), "YYYY-MM-DD hh:mm:ss"),
+			ip: internalIp.v4.sync(),
+			buildTime: fecha.format(new Date(), "YYYY-MM-DD HH:mm:ss"),
 			outputFile: "version.html",
 			registry: "https://registry.npmjs.org/"
 		};
