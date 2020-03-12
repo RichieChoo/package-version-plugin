@@ -2,10 +2,12 @@ const fs = require("fs");
 const path = require("path");
 const getHtml = require("../lib/getHtml");
 const data = require("./version.json");
+const internalIp = require("internal-ip");
 const relativeDate = require("tiny-relative-date");
 const fecha = require("fecha");
 const result = {
 	name: "test",
+	ip: internalIp.v4.sync(),
 	buildTime: fecha.format(new Date(), "YYYY-MM-DD hh:mm:ss")
 };
 result.registry = data.registry.includes("registry.npmjs.org")
