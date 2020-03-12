@@ -3,9 +3,10 @@ const path = require("path");
 const getHtml = require("../lib/getHtml");
 const data = require("./version.json");
 const relativeDate = require("tiny-relative-date");
+const fecha = require("fecha");
 const result = {
 	name: "test",
-	updateTime: relativeDate(new Date())
+	buildTime: fecha.format(new Date(), "YYYY-MM-DD hh:mm:ss")
 };
 result.registry = data.registry.includes("registry.npmjs.org")
 	? "https://www.npmjs.com/"
