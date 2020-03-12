@@ -1,14 +1,11 @@
 {
   "name": "package-version-plugin",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "show project dependencies exact versions on production environment.",
   "main": "index.js",
   "scripts": {
     "test": "nodemon test/test.js"
   },
-  "files": [
-    "dist"
-  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/RichieChoo/package-version-plugin"
