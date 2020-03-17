@@ -7,6 +7,7 @@ const pkg = require("./package.json");
 const isRegExp = require("lodash.isregexp");
 const fecha = require("fecha");
 const internalIp = require("internal-ip");
+const urljoin = require("url-join");
 class PackageVersionPlugin {
 	constructor(options) {
 		const defaultOptions = {
@@ -38,7 +39,7 @@ class PackageVersionPlugin {
 				name: v,
 				belong: key,
 				version: this.getPkgVersion(v, context),
-				href: path.join(detailPath, v).replace(path.sep, "/")
+				href: urljoin(detailPath, v)
 			};
 			if (isRegExp(regexp)) {
 				regexp.lastIndex = 0;
@@ -72,7 +73,7 @@ class PackageVersionPlugin {
 		const curRegistryDetailPath = registry
 			? registry.includes("registry.npmjs.org")
 				? "https://www.npmjs.com/package/"
-				: path.join(registry, "/#/detail/").replace(path.sep, "/")
+				: urljoin(registry, "/#/detail/")
 			: false;
 		if (showDependencies) {
 			this.getDepAndDevDep({

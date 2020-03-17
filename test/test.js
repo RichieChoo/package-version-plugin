@@ -3,6 +3,7 @@ const path = require("path");
 const getHtml = require("../lib/getHtml");
 const data = require("./version.json");
 const internalIp = require("internal-ip");
+const urljoin = require("url-join");
 const fecha = require("fecha");
 const result = {
 	name: "test",
@@ -10,9 +11,7 @@ const result = {
 	ip: internalIp.v4.sync(),
 	buildTime: fecha.format(new Date(), "YYYY-MM-DD hh:mm:ss")
 };
-result.registry = data.registry.includes("registry.npmjs.org")
-	? "https://www.npmjs.com/"
-	: data.registry;
+result.registry = data.registry;
 result.list = Object.keys(data.dependencies).map(v => ({
 	name: v,
 	version: data.dependencies[v],
@@ -20,7 +19,7 @@ result.list = Object.keys(data.dependencies).map(v => ({
 	href: result.registry
 		? result.registry.includes("registry.npmjs.org")
 			? "https://www.npmjs.com/package/" + v
-			: path.join(result.registry, "#", "detail", v)
+			: urljoin(result.registry, "/#/", "detail", v)
 		: "#"
 }));
 fs.writeFile(
