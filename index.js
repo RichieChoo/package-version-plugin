@@ -3,6 +3,7 @@ const os = require("os");
 const path = require("path");
 const pluginName = "PackageVersionPlugin";
 const getHtml = require("./lib/getHtml");
+const getLatest = require("./lib/getLatest");
 const pkg = require("./package.json");
 const isRegExp = require("lodash.isregexp");
 const fecha = require("fecha");
@@ -11,6 +12,7 @@ const urljoin = require("url-join");
 class PackageVersionPlugin {
 	constructor(options) {
 		const defaultOptions = {
+			needLastest: false,
 			showDevDependencies: false,
 			showDependencies: true,
 			name: pkg.name,
@@ -99,13 +101,25 @@ class PackageVersionPlugin {
 	}
 	apply(compiler) {
 		const { hooks, context } = compiler;
-		hooks.emit.tap(pluginName, compilation => {
-			const data = getHtml(this.getData(context));
-			const { outputFile } = this.options;
-			compilation.assets[outputFile] = {
-				source: () => data,
-				size: () => Buffer.byteLength(data, "utf8")
+		hooks.emit.tapAsync(pluginName, (compilation, cb) => {
+			const { outputFile, needLastest } = this.options;
+			const result = this.getData(context);
+			const callback = result => {
+				const data = getHtml(result);
+				compilation.assets[outputFile] = {
+					source: () => data,
+					size: () => Buffer.byteLength(data, "utf8")
+				};
+				cb();
 			};
+			if (needLastest) {
+				Promise.all(result.list.map(v => getLatest(v))).then(res => {
+					result.list = res;
+					callback(result);
+				});
+			} else {
+				callback(result);
+			}
 		});
 	}
 }

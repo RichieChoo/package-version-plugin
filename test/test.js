@@ -1,6 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const getHtml = require("../lib/getHtml");
+const getLatest = require("../lib/getLatest");
 const data = require("./version.json");
 const internalIp = require("internal-ip");
 const urljoin = require("url-join");
@@ -22,14 +23,21 @@ result.list = Object.keys(data.dependencies).map(v => ({
 			: urljoin(result.registry, "/#/", "detail", v)
 		: "#"
 }));
-fs.writeFile(
-	path.join(process.cwd(), "test/test-spec.html"),
-	getHtml(result),
-	err => {
-		if (!err) {
-			console.log("test done!");
-		} else {
-			console.log(err);
-		}
-	}
-);
+Promise.all(result.list.map(v => getLatest(v)))
+	.then(res => {
+		result.list = res;
+		fs.writeFile(
+			path.join(process.cwd(), "test/test-spec.html"),
+			getHtml(result),
+			err => {
+				if (!err) {
+					console.log("test done!");
+				} else {
+					console.log(err);
+				}
+			}
+		);
+	})
+	.catch(err => {
+		console.log(err);
+	});
