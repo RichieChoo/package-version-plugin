@@ -36,18 +36,18 @@ var webpackConfig = {
 const PackageVersionPlugin = require('package-version-plugin');
 
 ...
-chainWebpack:config=>{
-    	config.plugin("PackageVersionPlugin").use(PackageVersionPlugin, [
-			{
-                registry: "https://registry.npmjs.org/",
-                outputFile: "test-version.html",
-                name: "test",
-                showDevDependencies:true,
-                showDependencies:true,
-                depFilterRegExp:/^test/,
-                devDepFilterRegExp:/^\test/
-            }
-		]);
+chainWebpack:config =>{
+    config.plugin("PackageVersionPlugin").use(PackageVersionPlugin, [
+        {
+            registry: "https://registry.npmjs.org/",
+            outputFile: "test-version.html",
+            name: "test",
+            showDevDependencies:true,
+            showDependencies:true,
+            depFilterRegExp:/^test/,
+            devDepFilterRegExp:/^\test/
+        }
+    ]);
 }
 ...
 ```
