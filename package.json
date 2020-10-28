@@ -1,6 +1,6 @@
 {
   "name": "package-version-plugin",
-  "version": "1.0.18",
+  "version": "1.0.19",
   "description": "show project dependencies exact versions on production environment.",
   "main": "index.js",
   "scripts": {
