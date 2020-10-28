@@ -18,7 +18,7 @@ var PackageVersionPlugin = require('package-version-plugin');
 var webpackConfig = {
     plugins: [
         new PackageVersionPlugin({
-            registry: "http://10.100.1.25:4873/",
+            registry: "https://registry.npmjs.org/",
             outputFile: "test-version.html",
             name: "test",
             showDevDependencies:true,
@@ -39,7 +39,7 @@ const PackageVersionPlugin = require('package-version-plugin');
 chainWebpack:config=>{
     	config.plugin("PackageVersionPlugin").use(PackageVersionPlugin, [
 			{
-                registry: "http://10.100.1.25:4873/",
+                registry: "https://registry.npmjs.org/",
                 outputFile: "test-version.html",
                 name: "test",
                 showDevDependencies:true,
