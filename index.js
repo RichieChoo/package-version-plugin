@@ -6,7 +6,7 @@ const getHtml = require("./lib/getHtml");
 const getLatest = require("./lib/getLatest");
 const pkg = require("./package.json");
 const isRegExp = require("lodash.isregexp");
-const fecha = require("fecha");
+const dayjs = require("dayjs");
 const internalIp = require("internal-ip");
 const urljoin = require("url-join");
 class packageVersionPlugin {
@@ -18,7 +18,7 @@ class packageVersionPlugin {
 			icon: "favicon.ico",
 			pkgVersion: pkg.version,
 			ip: internalIp.v4.sync(),
-			buildTime: fecha.format(new Date(), "YYYY-MM-DD HH:mm:ss"),
+			buildTime: dayjs().format( "YYYY-MM-DD HH:mm:ss"),
 			outputFile: "version.html",
 			registry: "https://registry.npmjs.org/",
 		};
