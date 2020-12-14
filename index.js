@@ -17,6 +17,7 @@ class packageVersionPlugin {
 			name: pkg.name,
 			icon: "favicon.ico",
 			pkgVersion: pkg.version,
+			extraInfo: false,
 			ip: internalIp.v4.sync(),
 			buildTime: dayjs().format( "YYYY-MM-DD HH:mm:ss"),
 			outputFile: "version.html",

@@ -9,11 +9,16 @@ const urljoin = require("url-join");
 const result = {
 	name: "test",
 	pkgVersion: "1.0.0",
+	extraInfo: {
+		key1: "testKey1",
+		key2: "testKey2",
+	},
+
 	ip: internalIp.v4.sync(),
 	buildTime: dayjs(new Date()).format("YYYY-MM-DD HH:mm:ss"),
 };
 result.registry = data.registry;
-result.list = Object.keys(data.dependencies).map((v) => ({
+result.list = Object.keys(data.dependencies).map(v => ({
 	name: v,
 	version: data.dependencies[v],
 	belong: "dependencies",
@@ -23,21 +28,21 @@ result.list = Object.keys(data.dependencies).map((v) => ({
 			: urljoin(result.registry, "/#/", "detail", v)
 		: "#",
 }));
-Promise.all(result.list.map((v) => getLatest(v)))
-	.then((res) => {
+Promise.all(result.list.map(v => getLatest(v)))
+	.then(res => {
 		result.list = res;
 		fs.writeFile(
 			path.join(process.cwd(), "test/test-spec.html"),
 			getHtml(result),
-			(err) => {
+			err => {
 				if (!err) {
 					console.log("test done!");
 				} else {
 					console.log(err);
 				}
-			}
+			},
 		);
 	})
-	.catch((err) => {
+	.catch(err => {
 		console.log(err);
 	});
