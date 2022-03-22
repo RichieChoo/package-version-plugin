@@ -1,6 +1,6 @@
 {
   "name": "package-version-plugin",
-  "version": "1.0.21",
+  "version": "1.0.23",
   "description": "show project dependencies exact versions on production environment.",
   "main": "index.js",
   "scripts": {
@@ -25,10 +25,10 @@
     "html-template-tag": "^3.2.0",
     "internal-ip": "^5.0.0",
     "lodash.isregexp": "^4.0.1",
-    "url-join": "^4.0.1"
+    "url-join": "^4.0.1",
+    "validator": "^12.2.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.2",
-    "validator": "^12.2.0"
+    "nodemon": "^2.0.2"
   }
 }
